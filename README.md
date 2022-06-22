@@ -1,2 +1,3 @@
-# Assetify-Library
-Assetify Library [Complete Edition]
+# ━ S Y N O P S I S
+
+### SOON TM
