@@ -25,7 +25,7 @@ local imports = {
     getResourceName = getResourceName,
     RegisterNetEvent = RegisterNetEvent,
     AddEventHandler = AddEventHandler,
-    triggerEvent = triggerEvent,
+    TriggerEvent = TriggerEvent,
     triggerRemoteEvent = (localPlayer and triggerServerEvent) or triggerClientEvent,
     triggerRemoteLatentEvent = (localPlayer and triggerLatentServerEvent) or triggerLatentClientEvent,
     json = json,
@@ -79,7 +79,7 @@ imports.AddEventHandler("Assetify:Network:API", root, function(serial, payload)
                         payload.processArgs = {cNetwork.handler.exec(self, imports.table.unpack(payload.processArgs))}
                     end
                     if not payload.isRemote then
-                        imports.triggerEvent("Assetify:Network:API", resourceRoot, serial, payload)
+                        imports.TriggerEvent("Assetify:Network:API", resourceRoot, serial, payload)
                     else
                         if not payload.isReceiver or not network.isServerInstance then
                             if not payload.isLatent then
@@ -228,7 +228,7 @@ function network:emit(...)
     end
     payload.processArgs = cArgs
     if not payload.isRemote then
-        imports.triggerEvent("Assetify:Network:API", resourceRoot, network.identifier, payload)
+        imports.TriggerEvent("Assetify:Network:API", resourceRoot, network.identifier, payload)
     else
         if payload.isReceiver then
             if not payload.isLatent then
@@ -275,7 +275,7 @@ function network:emitCallback(cThread, ...)
     end
     payload.processArgs = cArgs
     if not payload.isRemote then
-        return function() imports.triggerEvent("Assetify:Network:API", resourceRoot, network.identifier, payload) end
+        return function() imports.TriggerEvent("Assetify:Network:API", resourceRoot, network.identifier, payload) end
     else
         if not payload.isLatent then
             return function() imports.triggerRemoteEvent("Assetify:Network:API", resourceRoot, network.identifier, payload) end
