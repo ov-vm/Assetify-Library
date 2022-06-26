@@ -51,13 +51,17 @@ function timer:load(exec, interval, executions, ...)
     self.currentExec = 0
     self.interval, self.executions = interval, executions
     self.arguments = imports.table.pack(...)
-    self.timer = imports.setTimer(function()
-        self.currentExec = self.currentExec + 1
-        self.exec(imports.table.unpack(self.arguments))
-        if (self.executions > 0) and (self.currentExec >= self.executions) then
-            self:destroy()
+    self.timer = imports.Citizen.CreateThread(function()
+        while ((execution == 0) or (self.currentExec < execution)) do
+            self.currentExec = self.currentExec + 1
+            self.exec(imports.table.unpack(self.arguments))
+            if (self.executions > 0) and (self.currentExec >= self.executions) then
+                self:destroy()
+            else
+            imports.Citizen.Wait(self.interval)
+            end
         end
-    end, self.interval, self.executions)
+    end)
     return self
 end
 
