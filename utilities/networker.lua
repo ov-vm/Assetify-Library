@@ -28,7 +28,6 @@ local imports = {
     TriggerEvent = TriggerEvent,
     triggerRemoteEvent = (localPlayer and TriggerServerEvent) or TriggerClientEvent,
     triggerRemoteLatentEvent = (localPlayer and triggerLatentServerEvent) or triggerLatentClientEvent,
-    json = json,
     table = table
 }
 
