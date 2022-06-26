@@ -21,7 +21,7 @@ local imports = {
     tostring = tostring,
     DoesEntityExist = DoesEntityExist,
     getElementType = getElementType,
-    getThisResource = getThisResource,
+    GetCurrentResourceName = GetCurrentResourceName,
     getResourceName = getResourceName,
     RegisterNetEvent = RegisterNetEvent,
     AddEventHandler = AddEventHandler,
@@ -37,7 +37,7 @@ local imports = {
 ------------------------
 
 network = class.create("network", {
-    identifier = imports.md5(imports.getResourceName(imports.getThisResource())),
+    identifier = imports.GetCurrentResourceName(),
     isServerInstance = (not localPlayer and true) or false,
     bandwidth = 1250000,
     buffer = {},
