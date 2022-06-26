@@ -218,7 +218,7 @@ function network:emit(...)
             payload.isLatent = network.fetchArg(_, cArgs)
             if network.isServerInstance then
                 payload.isReceiver = network.fetchArg(_, cArgs)
-                payload.isReceiver = (payload.isReceiver and imports.DoesEntityExist(payload.isReceiver) and (imports.getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
+                payload.isReceiver = (payload.isReceiver and imports.DoesEntityExist(payload.isReceiver) and (imports.getElementType(payload.isReceiver) == "player") and payload.isReceiver) or -1
             end
         end
     else
@@ -265,7 +265,7 @@ function network:emitCallback(cThread, ...)
                 payload.isReceiver = localPlayer
             else
                 payload.isReceiver = network.fetchArg(_, cArgs)
-                payload.isReceiver = (payload.isReceiver and imports.DoesEntityExist(payload.isReceiver) and (imports.getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
+                payload.isReceiver = (payload.isReceiver and imports.DoesEntityExist(payload.isReceiver) and (imports.getElementType(payload.isReceiver) == "player") and payload.isReceiver) or -1
             end
         end
     else
