@@ -2,7 +2,7 @@
 
 ### SOON TM 😄
 
-##### [**MTA:SA ━ DBify-Library**](https://github.com/ov-sa/Assetify-Library)
+##### [**MTA:SA ━ Assetify-Library**](https://github.com/ov-sa/Assetify-Library)
 
 ## ━ Contents
 
