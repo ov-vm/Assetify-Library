@@ -18,7 +18,6 @@ local imports = {
     pairs = pairs,
     tonumber = tonumber,
     select = select,
-    unpack = unpack,
     decodeString = decodeString,
     DoesEntityExist = DoesEntityExist,
     setmetatable = setmetatable,
