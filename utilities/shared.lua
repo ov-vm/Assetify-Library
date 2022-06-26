@@ -20,21 +20,11 @@ local imports = {
     select = select,
     unpack = unpack,
     decodeString = decodeString,
-    isElement = isElement,
+    DoesEntityExist = DoesEntityExist,
     setmetatable = setmetatable,
     collectgarbage = collectgarbage,
-    getElementMatrix = getElementMatrix,
-    getElementPosition = getElementPosition,
-    fileExists = fileExists,
-    fileCreate = fileCreate,
-    fileDelete = fileDelete,
-    fileOpen = fileOpen,
-    fileRead = fileRead,
-    fileWrite = fileWrite,
-    fileGetSize = fileGetSize,
-    fileClose = fileClose,
-    toJSON = toJSON,
-    fromJSON = fromJSON,
+    GetEntityMatrix = GetEntityMatrix,
+    GetEntityCoords = GetEntityCoords,
     utf8 = utf8,
     table = table,
     string = string,
@@ -58,11 +48,11 @@ end
 
 getElementPosition = function(element, offX, offY, offZ)
     if not offX or not offY or not offZ then
-        return imports.getElementPosition(element)
+        return imports.GetEntityCoords(element)
     else
-        if not element or not imports.isElement(element) then return false end
+        if not element or not imports.DoesEntityExist(element) then return false end
         offX, offY, offZ = imports.tonumber(offX) or 0, imports.tonumber(offY) or 0, imports.tonumber(offZ) or 0
-        local cMatrix = imports.getElementMatrix(element)
+        local cMatrix = imports.GetEntityMatrix(element)
         return (offX*cMatrix[1][1]) + (offY*cMatrix[2][1]) + (offZ*cMatrix[3][1]) + cMatrix[4][1], (offX*cMatrix[1][2]) + (offY*cMatrix[2][2]) + (offZ*cMatrix[3][2]) + cMatrix[4][2], (offX*cMatrix[1][3]) + (offY*cMatrix[2][3]) + (offZ*cMatrix[3][3]) + cMatrix[4][3]
     end
 end
