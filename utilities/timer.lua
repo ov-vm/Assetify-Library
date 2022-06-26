@@ -51,7 +51,7 @@ function timer:load(exec, interval, executions, ...)
     self.interval, self.executions = interval, executions
     self.arguments = imports.table.pack(...)
     self.timer = imports.Citizen.CreateThread(function()
-        while (((execution == 0) or (self.currentExec < execution)) and self.__C and self.__isChild) do
+        while (((execution == 0) or (self.currentExec < execution)) and (self:getType() == "timer")) do
             self.currentExec = self.currentExec + 1
             self.exec(imports.table.unpack(self.arguments))
             if (self.executions > 0) and (self.currentExec >= self.executions) then
