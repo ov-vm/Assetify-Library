@@ -7,7 +7,6 @@
      Desc: Shared Utilities ]]--
 ----------------------------------------------------------------
 
---TODO: WIP
 
 -----------------
 --[[ Imports ]]--
@@ -18,7 +17,6 @@ local imports = {
     pairs = pairs,
     tonumber = tonumber,
     select = select,
-    decodeString = decodeString,
     DoesEntityExist = DoesEntityExist,
     setmetatable = setmetatable,
     collectgarbage = collectgarbage,
@@ -34,16 +32,6 @@ local imports = {
 ---------------
 --[[ Utils ]]--
 ---------------
-
-decodeString = function(decodeType, decodeData, decodeOptions, removeNull)
-    if not decodeData or (imports.type(decodeData) ~= "string") then return false end
-    local rawString = imports.decodeString(decodeType, decodeData, decodeOptions)
-    if not rawString then return false end
-    if removeNull then
-        rawString = imports.utf8.gsub(rawString, imports.utf8.char(0), "")
-    end
-    return rawString
-end
 
 getElementPosition = function(element, offX, offY, offZ)
     if not offX or not offY or not offZ then
