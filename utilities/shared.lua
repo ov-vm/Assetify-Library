@@ -22,10 +22,12 @@ local imports = {
     collectgarbage = collectgarbage,
     GetEntityMatrix = GetEntityMatrix,
     GetEntityCoords = GetEntityCoords,
+    GetPlayerPed = GetPlayerPed,
     string = string,
     table = table,
     math = math
 }
+localPlayer = imports.GetPlayerPed(-1)
 
 
 ---------------
