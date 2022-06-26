@@ -308,6 +308,7 @@ if localPlayer then
         network:emit("Assetify:onElementDestroy", false, source)
     end)
 else
+    --TODO:: WIP...
     syncer.libraryVersion = imports.getResourceInfo(resource, "version")
     syncer.libraryVersion = (syncer.libraryVersion and "v."..syncer.libraryVersion) or syncer.libraryVersion
     syncer.loadedClients = {}
