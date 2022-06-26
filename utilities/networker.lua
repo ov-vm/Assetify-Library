@@ -16,7 +16,6 @@
 local imports = {
     type = type,
     pairs = pairs,
-    md5 = md5,
     tonumber = tonumber,
     tostring = tostring,
     DoesEntityExist = DoesEntityExist,
@@ -157,7 +156,7 @@ end
 function network:serializeExec(exec)
     if not self or (self ~= network) then return false end
     if not exec or (imports.type(exec) ~= "function") then return false end
-    local cSerial = imports.md5(network.identifier..":"..imports.tostring(exec))
+    local cSerial = network.identifier..":"..imports.tostring(exec)
     network.cache.execSerials[cSerial] = exec
     return cSerial
 end
