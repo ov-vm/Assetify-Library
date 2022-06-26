@@ -23,8 +23,8 @@ local imports = {
     getElementType = getElementType,
     getThisResource = getThisResource,
     getResourceName = getResourceName,
-    addEvent = addEvent,
-    addEventHandler = addEventHandler,
+    RegisterNetEvent = RegisterNetEvent,
+    AddEventHandler = AddEventHandler,
     triggerEvent = triggerEvent,
     triggerRemoteEvent = (localPlayer and triggerServerEvent) or triggerClientEvent,
     triggerRemoteLatentEvent = (localPlayer and triggerLatentServerEvent) or triggerLatentClientEvent,
@@ -47,8 +47,8 @@ network = class.create("network", {
     }
 })
 
-imports.addEvent("Assetify:Network:API", true)
-imports.addEventHandler("Assetify:Network:API", root, function(serial, payload)
+imports.RegisterNetEvent("Assetify:Network:API")
+imports.AddEventHandler("Assetify:Network:API", root, function(serial, payload)
     if not serial or not payload or not payload.processType or (payload.isRestricted and (serial ~= network.identifier)) then return false end
     if payload.processType == "emit" then
         local cNetwork = network:fetch(payload.networkName)
