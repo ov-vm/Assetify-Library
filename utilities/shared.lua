@@ -22,9 +22,8 @@ local imports = {
     collectgarbage = collectgarbage,
     GetEntityMatrix = GetEntityMatrix,
     GetEntityCoords = GetEntityCoords,
-    utf8 = utf8,
-    table = table,
     string = string,
+    table = table,
     math = math
 }
 
@@ -118,11 +117,11 @@ class = {
 --[[ Class: UTF8 ]]--
 ---------------------
 
-local __utf8_gsub = imports.utf8.gsub
-utf8.gsub = function(string, matchWord, replaceWord, isStrictcMatch, matchPrefix, matchPostfix)
+local __string_gsub = imports.string.gsub
+string.gsub = function(string, matchWord, replaceWord, isStrictcMatch, matchPrefix, matchPostfix)
     matchPrefix, matchPostfix = matchPrefix or "", matchPostfix or ""
     matchWord = (isStrictcMatch and "%f[^"..matchPrefix.."%z%s]"..matchWord.."%f["..matchPostfix.."%z%s]") or matchPrefix..matchWord..matchPostfix
-    return __utf8_gsub(string, matchWord, replaceWord)
+    return __string_gsub(string, matchWord, replaceWord)
 end
 
 
