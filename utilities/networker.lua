@@ -89,9 +89,9 @@ imports.AddEventHandler("Assetify:Network:API", function(serial, payload)
                             end
                         else
                             if not payload.isLatent then
-                                imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Network:API", serial, payload)
+                                imports.triggerRemoteEvent("Assetify:Network:API", payload.isReceiver, serial, payload)
                             else
-                                imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Network:API", network.bandwidth, false, serial, payload)
+                                imports.triggerRemoteLatentEvent("Assetify:Network:API", payload.isReceiver, network.bandwidth, false, serial, payload)
                             end
                         end
                     end
@@ -232,9 +232,9 @@ function network:emit(...)
     else
         if payload.isReceiver then
             if not payload.isLatent then
-                imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Network:API", network.identifier, payload)
+                imports.triggerRemoteEvent("Assetify:Network:API", payload.isReceiver, network.identifier, payload)
             else
-                imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Network:API", network.bandwidth, false, network.identifier, payload)
+                imports.triggerRemoteLatentEvent("Assetify:Network:API", payload.isReceiver, network.bandwidth, false, network.identifier, payload)
             end
         else
             if not payload.isLatent then
