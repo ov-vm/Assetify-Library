@@ -16,14 +16,12 @@
 local imports = {
     type = type,
     pairs = pairs,
-    md5 = md5,
     tonumber = tonumber,
     tostring = tostring,
     isElement = isElement,
     getElementType = getElementType,
     getRealTime = getRealTime,
-    getThisResource = getThisResource,
-    getResourceName = getResourceName,
+    GetCurrentResourceName = GetCurrentResourceName,
     getResourceInfo = getResourceInfo,
     getElementsByType = getElementsByType,
     setElementModel = setElementModel,
@@ -44,7 +42,7 @@ local imports = {
 -----------------------
 
 syncer = class.create("syncer", {
-    libraryResource = imports.getThisResource(),
+    libraryResource = imports.GetCurrentResourceName(),
     isLibraryLoaded = false,
     isModuleLoaded = false,
     libraryBandwidth = 0,
@@ -55,9 +53,9 @@ syncer = class.create("syncer", {
     syncedBoneAttachments = {},
     syncedLights = {}
 })
-syncer.libraryName = imports.getResourceName(syncer.libraryResource)
+syncer.libraryName = imports.GetCurrentResourceName(syncer.libraryResource)
 syncer.librarySource = "https://api.github.com/repos/ov-sa/Assetify-Library/releases/latest"
-syncer.librarySerial = imports.md5(imports.getResourceName(syncer.libraryResource)..":"..imports.tostring(syncer.libraryResource)..":"..imports.json.encode(imports.getRealTime()))
+syncer.librarySerial = syncer.libraryName..":"..imports.tostring(syncer.libraryResource)..":"..imports.json.encode(imports.getRealTime())
 
 network:create("Assetify:onLoad")
 network:create("Assetify:onUnload")
