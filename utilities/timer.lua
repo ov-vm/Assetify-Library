@@ -16,11 +16,9 @@
 local imports = {
     type = type,
     tonumber = tonumber,
-    setTimer = setTimer,
-    isTimer = isTimer,
-    killTimer = killTimer,
     table = table,
-    math = math
+    math = math,
+    Citizen = Citizen
 }
 
 

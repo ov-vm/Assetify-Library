@@ -193,9 +193,8 @@ table.pack = function(...)
     return {...}
 end
 table.unpack = function(baseTable)
-    return imports.unpack(baseTable, 1, baseTable.__N or #baseTable)
+    return imports.table.unpack(baseTable, 1, baseTable.__N or #baseTable)
 end
-unpack = table.unpack
 table.clone = function(baseTable, isRecursive)
     if not baseTable or (imports.type(baseTable) ~= "table") then return false end
     local __baseTable = {}
