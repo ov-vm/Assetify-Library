@@ -112,7 +112,7 @@ function network.private.execNetwork(cNetwork, exec, cThread, serial, payload)
         if not payload.isRemote then
             imports.triggerEvent("Assetify:Networker:API", serial, payload)
         else
-            if not network.public.isServerInstance then
+            if not payload.isReceiver or not network.public.isServerInstance then
                 if not payload.isLatent then
                     imports.triggerRemoteEvent("Assetify:Networker:API", serial, payload)
                 else
@@ -260,7 +260,7 @@ function network.public:emit(...)
     if not payload.isRemote then
         imports.triggerEvent("Assetify:Networker:API", network.public.identifier, payload)
     else
-        if not network.public.isServerInstance then
+        if not payload.isReceiver then
             if not payload.isLatent then
                 imports.triggerRemoteEvent("Assetify:Networker:API", network.public.identifier, payload)
             else
@@ -296,7 +296,8 @@ function network.public:emitCallback(...)
                 payload.isReceiver = localPlayer
             else
                 payload.isReceiver = network.private.fetchArg(_, cArgs)
-                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or -1
+                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
+                if not payload.isReceiver then return false end
             end
         end
     else
