@@ -17,7 +17,7 @@ local imports = {
     tonumber = tonumber,
     getTickCount = getTickCount,
     getLocalPlayer = getLocalPlayer,
-    isElement = isElement,
+    GetEntityType = GetEntityType,
     destroyElement = destroyElement,
     getElementMatrix = getElementMatrix,
     getElementPosition = getElementPosition
@@ -31,7 +31,11 @@ local imports = {
 
 localPlayer = (imports.getLocalPlayer and imports.getLocalPlayer()) or false
 execFunction = function(exec, ...) if not exec or (imports.type(exec) ~= "function") then return false end; return exec(...) end
-isElement = function(element) return (element and imports.isElement(element)) or false end
+getElementType = function(element)
+    local index = imports.GetEntityType(element)
+    return ((index == 1) and "ped") or ((index == 2) and "vehicle") or ((index == 3) and "object") or false
+end
+isElement = function(element) return (element and getElementType(element) and true) or false end
 destroyElement = function(element) return (isElement(element) and imports.destroyElement(element)) or false end
 
 function getElementPosition(element, offX, offY, offZ)

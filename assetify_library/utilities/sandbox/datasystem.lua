@@ -14,9 +14,7 @@
 
 local imports = {
     type = type,
-    pairs = pairs,
-    isElement = isElement,
-    getElementType = getElementType
+    pairs = pairs
 }
 
 
@@ -39,7 +37,7 @@ if localPlayer then
     end
 
     function syncer.syncEntityData(element, data, value, remoteSignature)
-        if not element or (not remoteSignature and not imports.isElement(element)) or not data or (imports.type(data) ~= "string") then return false end
+        if not element or (not remoteSignature and not isElement(element)) or not data or (imports.type(data) ~= "string") then return false end
         syncer.syncedEntityDatas[element] = syncer.syncedEntityDatas[element] or {}
         local __value = syncer.syncedEntityDatas[element][data]
         syncer.syncedEntityDatas[element][data] = value
@@ -73,9 +71,9 @@ else
 
     function syncer.syncEntityData(element, data, value, isSync, targetPlayer, remoteSignature)
         if targetPlayer then return network:emit("Assetify:Syncer:onSyncEntityData", true, false, targetPlayer, element, data, value, remoteSignature) end
-        if not element or not imports.isElement(element) or not data or (imports.type(data) ~= "string") then return false end
+        if not element or not isElement(element) or not data or (imports.type(data) ~= "string") then return false end
         remoteSignature = {
-            elementType = imports.getElementType(element)
+            elementType = getElementType(element)
         }
         syncer.syncedEntityDatas[element] = syncer.syncedEntityDatas[element] or {}
         local __value = syncer.syncedEntityDatas[element][data]
