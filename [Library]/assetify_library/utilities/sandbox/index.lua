@@ -16,11 +16,12 @@ local imports = {
     type = type,
     tonumber = tonumber,
     getTickCount = getTickCount,
-    getLocalPlayer = getLocalPlayer,
+    GetPlayerPed = GetPlayerPed,
     GetEntityType = GetEntityType,
     destroyElement = destroyElement,
     getElementMatrix = getElementMatrix,
-    getElementPosition = getElementPosition
+    getElementPosition = getElementPosition,
+    TriggerServerEvent = TriggerServerEvent
 }
 
 
@@ -29,7 +30,7 @@ local imports = {
 ---------------
 
 
-localPlayer = (imports.getLocalPlayer and imports.getLocalPlayer()) or false
+localPlayer = (imports.TriggerServerEvent and imports.GetPlayerPed(-1)) or false
 execFunction = function(exec, ...) if not exec or (imports.type(exec) ~= "function") then return false end; return exec(...) end
 getElementType = function(element)
     local index = imports.GetEntityType(element)
