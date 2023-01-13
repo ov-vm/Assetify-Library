@@ -1,8 +1,8 @@
-fx_version "cerulean"
-game "gta5"
-
+author "vStudio <crazynuggets@outlook.com>'
 description "Assetify Library"
 version "1.0.0"
+fx_version "cerulean"
+game "gta5"
 
 shared_scripts {
     -->> Settings <<--
