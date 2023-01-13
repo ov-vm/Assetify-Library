@@ -23,7 +23,7 @@ local imports = {
     addEventHandler = addEventHandler,
     triggerEvent = TriggerEvent,
     triggerRemoteEvent = (localPlayer and TriggerServerEvent) or TriggerClientEvent,
-    triggerRemoteLatentEvent = (localPlayer and triggerLatentServerEvent) or triggerLatentClientEvent
+    triggerRemoteLatentEvent = (localPlayer and TriggerLatentServerEvent) or TriggerLatentClientEvent
 }
 
 
