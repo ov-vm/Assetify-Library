@@ -25,7 +25,7 @@ local imports = {
     getmetatable = getmetatable,
     loadstring = loadstring
 }
-vcl = nil
+json, vcl = nil, nil
 
 
 ----------------------
