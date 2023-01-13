@@ -1,4 +1,4 @@
-author "vStudio <crazynuggets@outlook.com>'
+author "vStudio <crazynuggets@outlook.com>"
 description "Assetify Library"
 version "1.0.0"
 fx_version "cerulean"
@@ -6,7 +6,7 @@ game "gta5"
 
 shared_scripts {
     -->> Settings <<--
-    "settings/shared.lua"
+    "settings/shared.lua",
 
     -->> Utilities: Sandbox <<--
     "utilities/sandbox/index.lua",
