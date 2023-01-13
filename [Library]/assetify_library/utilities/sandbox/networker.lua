@@ -110,19 +110,19 @@ function network.private.execNetwork(cNetwork, exec, cThread, serial, payload)
             payload.processArgs = table.pack(exec(table.unpack(payload.processArgs)))
         end
         if not payload.isRemote then
-            imports.triggerEvent("Assetify:Networker:API", resourceRoot, serial, payload)
+            imports.triggerEvent("Assetify:Networker:API", serial, payload)
         else
             if not payload.isReceiver or not network.public.isServerInstance then
                 if not payload.isLatent then
-                    imports.triggerRemoteEvent("Assetify:Networker:API", resourceRoot, serial, payload)
+                    imports.triggerRemoteEvent("Assetify:Networker:API", serial, payload)
                 else
-                    imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, resourceRoot, serial, payload)
+                    imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, serial, payload)
                 end
             else
                 if not payload.isLatent then
-                    imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Networker:API", resourceRoot, serial, payload)
+                    imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Networker:API", serial, payload)
                 else
-                    imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Networker:API", network.public.bandwidth, false, resourceRoot, serial, payload)
+                    imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Networker:API", network.public.bandwidth, false, serial, payload)
                 end
             end
         end
@@ -258,19 +258,19 @@ function network.public:emit(...)
     end
     payload.processArgs = cArgs
     if not payload.isRemote then
-        imports.triggerEvent("Assetify:Networker:API", resourceRoot, network.public.identifier, payload)
+        imports.triggerEvent("Assetify:Networker:API", network.public.identifier, payload)
     else
         if payload.isReceiver then
             if not payload.isLatent then
-                imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Networker:API", resourceRoot, network.public.identifier, payload)
+                imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Networker:API", network.public.identifier, payload)
             else
-                imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Networker:API", network.public.bandwidth, false, resourceRoot, network.public.identifier, payload)
+                imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Networker:API", network.public.bandwidth, false, network.public.identifier, payload)
             end
         else
             if not payload.isLatent then
-                imports.triggerRemoteEvent("Assetify:Networker:API", resourceRoot, network.public.identifier, payload)
+                imports.triggerRemoteEvent("Assetify:Networker:API", network.public.identifier, payload)
             else
-                imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, resourceRoot, network.public.identifier, payload)
+                imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, network.public.identifier, payload)
             end
         end
     end
@@ -305,12 +305,12 @@ function network.public:emitCallback(...)
     end
     payload.processArgs = cArgs
     if not payload.isRemote then
-        imports.triggerEvent("Assetify:Networker:API", resourceRoot, network.public.identifier, payload)
+        imports.triggerEvent("Assetify:Networker:API", network.public.identifier, payload)
     else
         if not payload.isLatent then
-            imports.triggerRemoteEvent("Assetify:Networker:API", resourceRoot, network.public.identifier, payload)
+            imports.triggerRemoteEvent("Assetify:Networker:API", network.public.identifier, payload)
         else
-            imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, resourceRoot, network.public.identifier, payload)
+            imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, network.public.identifier, payload)
         end
     end
     return cPromise
