@@ -16,7 +16,6 @@ local imports = {
     pairs = pairs,
     tonumber = tonumber,
     collectgarbage = collectgarbage,
-    isElement = isElement,
     addDebugHook = addDebugHook,
     setElementMatrix = setElementMatrix,
     getElementMatrix = getElementMatrix,
@@ -35,7 +34,7 @@ attacher.private.buffer = {
 
 function attacher.public:attachElements(element, parent, offX, offY, offZ, rotX, rotY, rotZ)
     offX, offY, offZ, rotX, rotY, rotZ = imports.tonumber(offX) or 0, imports.tonumber(offY) or 0, imports.tonumber(offZ) or 0, imports.tonumber(rotX) or 0, imports.tonumber(rotY) or 0, imports.tonumber(rotZ) or 0
-    if not imports.isElement(element) or not imports.isElement(parent) or (element == parent) then return false end
+    if not isElement(element) or not isElement(parent) or (element == parent) then return false end
     attacher.public:detachElements(element)
     attacher.private.buffer.parent[parent] = attacher.private.buffer.parent[parent] or {}
     attacher.private.buffer.parent[parent][element] = true

@@ -15,7 +15,6 @@
 local imports = {
     pairs = pairs,
     tonumber = tonumber,
-    isElement = isElement,
     destroyElement = destroyElement,
     dxCreateShader = dxCreateShader,
     dxCreateTexture = dxCreateTexture,
@@ -159,7 +158,7 @@ if localPlayer then
     function shader.public:load(element, shaderCategory, shaderName, textureName, shaderTextures, shaderInputs, rwCache, shaderMaps, encryptKey, shaderPriority, shaderDistance, isStandalone, isInternal)
         if not shader.public:isInstance(self) then return false end
         if not shaderCategory or not shaderName or (not manager:isInternal(isInternal) and not shader.public.remoteWhitelist[shaderName]) or (not shader.public.preLoaded[shaderName] and not shaderRW.buffer[shaderName]) or (not isStandalone and not textureName) or not shaderTextures or not shaderInputs or not rwCache then return false end
-        element = ((element and imports.isElement(element)) and element) or false
+        element = ((element and isElement(element)) and element) or false
         textureName = textureName or false
         shaderPriority = imports.tonumber(shaderPriority) or shader.public.shaderPriority
         shaderDistance = imports.tonumber(shaderDistance) or shader.public.shaderDistance
@@ -184,7 +183,7 @@ if localPlayer then
         end
         for i, j in imports.pairs(shaderTextures) do
             if rwCache.texture then
-                if j and imports.isElement(rwCache.texture[j]) then
+                if j and isElement(rwCache.texture[j]) then
                     self:setValue(i, rwCache.texture[j])
                 end
             end

@@ -19,8 +19,6 @@ local imports = {
     tonumber = tonumber,
     tostring = tostring,
     collectgarbage = collectgarbage,
-    isElement = isElement,
-    getElementType = getElementType,
     getRealTime = getRealTime,
     getThisResource = getThisResource,
     getResourceName = getResourceName,
@@ -83,15 +81,15 @@ if localPlayer then
     syncer.private.execOnLoad(function() network:emit("Assetify:Syncer:onLoadClient", true, false, localPlayer) end)
 
     function syncer.private:setElementModel(element, assetType, assetName, assetClump, clumpMaps, remoteSignature)
-        if not element or (not remoteSignature and not imports.isElement(element)) then return false end
-        local elementType = imports.getElementType(element)
+        if not element or (not remoteSignature and not isElement(element)) then return false end
+        local elementType = getElementType(element)
         elementType = (((elementType == "ped") or (elementType == "player")) and "ped") or elementType
         if not settings.assetPacks[assetType] or not settings.assetPacks[assetType].assetType or (settings.assetPacks[assetType].assetType ~= elementType) then return false end
         local modelID = manager:getAssetID(assetType, assetName, assetClump)
         if not modelID then return false end
         syncer.public.syncedElements[element] = {assetType = assetType, assetName = assetName, assetClump = assetClump, clumpMaps = clumpMaps}
         thread:createHeartbeat(function()
-            return not imports.isElement(element)
+            return not isElement(element)
         end, function()
             if clumpMaps then
                 shader.clearElementBuffer(element, asset.references.clump)
@@ -116,7 +114,7 @@ if localPlayer then
     end
 
     function syncer.private:setElementTone(element, assetType, assetName, textureName, tone, isBumpTone, remoteSignature)
-        if not element or (not remoteSignature and not imports.isElement(element)) then return false end
+        if not element or (not remoteSignature and not isElement(element)) then return false end
         if not textureName or not tone or (imports.type(tone) ~= "table") then return false end
         local cAsset = manager:getAssetData(assetType, assetName)
         if not cAsset or not cAsset.manifestData.assetClumps or not cAsset.manifestData.shaderMaps or not cAsset.manifestData.shaderMaps[(asset.references.clump)] or not cAsset.manifestData.shaderMaps[(asset.references.clump)][textureName] then return false end
@@ -132,7 +130,7 @@ if localPlayer then
         ref = (isBumpTone and ref.bump) or ref
         ref[1], ref[2] = tone[1], tone[2]
         thread:createHeartbeat(function()
-            return not imports.isElement(element)
+            return not isElement(element)
         end, function()
             local cShader = shader:fetchInstance(element, asset.references.clump, textureName)
             if cShader then cShader:setValue((isBumpTone and "clumpTone_bump") or "clumpTone", {(15 + (85*tone[1]*0.01))*0.01, (25 + (25*tone[2]*0.01))*0.01}) end
@@ -233,13 +231,13 @@ else
 
     function syncer.private:setElementModel(element, assetType, assetName, assetClump, clumpMaps, remoteSignature, targetPlayer)
         if targetPlayer then return network:emit("Assetify:Syncer:onSyncElementModel", true, false, targetPlayer, element, assetType, assetName, assetClump, clumpMaps, remoteSignature) end
-        if not element or not imports.isElement(element) then return false end
-        local elementType = imports.getElementType(element)
+        if not element or not isElement(element) then return false end
+        local elementType = getElementType(element)
         elementType = (((elementType == "ped") or (elementType == "player")) and "ped") or elementType
         if not settings.assetPacks[assetType] or not settings.assetPacks[assetType].assetType or (settings.assetPacks[assetType].assetType ~= elementType) then return false end
         local cAsset = manager:getAssetData(assetType, assetName)
         if not cAsset or (cAsset.manifestData.assetClumps and (not assetClump or not cAsset.manifestData.assetClumps[assetClump])) then return false end
-        remoteSignature = imports.getElementType(element)
+        remoteSignature = getElementType(element)
         syncer.public.syncedElements[element] = {assetType = assetType, assetName = assetName, assetClump = assetClump, clumpMaps = clumpMaps, remoteSignature = remoteSignature}
         thread:create(function(self)
             for i, j in imports.pairs(syncer.public.libraryClients.loaded) do
@@ -252,14 +250,14 @@ else
 
     function syncer.private:setElementTone(element, assetType, assetName, textureName, tone, isBumpTone, remoteSignature, targetPlayer)
         if targetPlayer then return network:emit("Assetify:Syncer:onSyncElementTone", true, false, targetPlayer, element, assetType, assetName, textureName, tone, isBumpTone, remoteSignature) end
-        if not element or not imports.isElement(element) then return false end
+        if not element or not isElement(element) then return false end
         if not textureName or not tone or (imports.type(tone) ~= "table") then return false end
         local cAsset = manager:getAssetData(assetType, assetName)
         if not cAsset or not cAsset.manifestData.assetClumps or not cAsset.manifestData.shaderMaps or not cAsset.manifestData.shaderMaps[(asset.references.clump)] or not cAsset.manifestData.shaderMaps[(asset.references.clump)][textureName] then return false end
         isBumpTone = (isBumpTone and true) or false
         tone[1] = math.max(0, math.min(100, imports.tonumber(tone[1]) or 0))
         tone[2] = math.max(0, math.min(100, imports.tonumber(tone[2]) or 0))
-        remoteSignature = imports.getElementType(element)
+        remoteSignature = getElementType(element)
         syncer.public.syncedElementTones[element] = syncer.public.syncedElementTones[element] or {remoteSignature = remoteSignature}
         syncer.public.syncedElementTones[element][assetType] = syncer.public.syncedElementTones[element][assetType] or {}
         syncer.public.syncedElementTones[element][assetType][assetName] = syncer.public.syncedElementTones[element][assetType][assetName] or {}

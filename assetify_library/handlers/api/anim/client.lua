@@ -13,7 +13,6 @@
 -----------------
 
 local imports = {
-    isElement = isElement,
     engineReplaceAnimation = engineReplaceAnimation,
     engineRestoreAnimation = engineRestoreAnimation
 }
@@ -25,7 +24,7 @@ local imports = {
 
 function manager.API.Anim.loadAnim(element, assetName)
     if not syncer.isLibraryLoaded then return false end
-    if not element or not imports.isElement(element) then return false end
+    if not element or not isElement(element) then return false end
     local cAsset, isLoaded = manager:getAssetData("animation", assetName)
     if not cAsset or not isLoaded then return false end
     if cAsset.manifestData.assetAnimations then
@@ -39,7 +38,7 @@ end
 
 function manager.API.Anim.unloadAnim(element, assetName)
     if not syncer.isLibraryLoaded then return false end
-    if not element or not imports.isElement(element) then return false end
+    if not element or not isElement(element) then return false end
     local cAsset, isLoaded = manager:getAssetData("animation", assetName)
     if not cAsset or not isLoaded then return false end
     if cAsset.manifestData.assetAnimations then

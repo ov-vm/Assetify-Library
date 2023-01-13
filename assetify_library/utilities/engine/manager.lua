@@ -19,8 +19,6 @@ local imports = {
     tostring = tostring,
     loadstring = loadstring,
     collectgarbage = collectgarbage,
-    isElement = isElement,
-    getElementType = getElementType,
     destroyElement = destroyElement,
     addEventHandler = addEventHandler
 }
@@ -104,7 +102,7 @@ function manager.public.clearElementBuffer(element, isResource)
             imports.destroyElement(i)
         end
     else
-        if not imports.isElement(element) then return false end
+        if not isElement(element) then return false end
         local elementScope = manager.private.buffer.instance[element]
         if not elementScope or not manager.private.buffer.scoped[elementScope] then return false end
         manager.private.buffer.scoped[elementScope][element] = nil
@@ -376,7 +374,7 @@ else
 
     function manager.public:loadResource(player, resourceFiles, ...)
         if manager.public:isInternal() then return false end
-        if player and (not imports.isElement(player) or (imports.getElementType(player) ~= "player")) then return false end
+        if player and (not isElement(player) or (getElementType(player) ~= "player")) then return false end
         if not player and (not resourceFiles or (imports.type(resourceFiles) ~= "table")) then return false end
         return syncer:syncResource(player, sourceResource, resourceFiles, ...)
     end

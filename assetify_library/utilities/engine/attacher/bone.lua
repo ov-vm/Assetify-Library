@@ -16,8 +16,6 @@ local syncer = syncer:import()
 local imports = {
     pairs = pairs,
     tonumber = tonumber,
-    isElement = isElement,
-    getElementType = getElementType,
     setElementMatrix = setElementMatrix,
     getElementRotation = getElementRotation,
     getElementBoneMatrix = getElementBoneMatrix,
@@ -109,11 +107,11 @@ if localPlayer then
 
     function bone.public:load(element, parent, boneData, remoteSignature)
         if not bone.public:isInstance(self) then return false end
-        if not element or not parent or (not remoteSignature and (not imports.isElement(element) or not imports.isElement(parent))) or not boneData or (element == parent) or bone.public.buffer.element[element] then return false end
+        if not element or not parent or (not remoteSignature and (not isElement(element) or not isElement(parent))) or not boneData or (element == parent) or bone.public.buffer.element[element] then return false end
         self.element, self.parent = element, parent
         if not self:refresh(boneData, remoteSignature) then return false end
         self.cHeartbeat = thread:createHeartbeat(function()
-            return not imports.isElement(element)
+            return not isElement(element)
         end, function()
             self.cDummy = dummy:fetchInstance(self.element)
             if self.cDummy and self.cDummy.cStreamer then self.cDummy.cStreamer:pause() end
@@ -144,7 +142,7 @@ if localPlayer then
 
     function bone.public:refresh(boneData, remoteSignature)
         if not bone.public:isInstance(self) then return false end
-        self.parentType = self.parentType or (remoteSignature and remoteSignature.parentType) or imports.getElementType(self.parent)
+        self.parentType = self.parentType or (remoteSignature and remoteSignature.parentType) or getElementType(self.parent)
         self.parentType = ((self.parentType == "player") and "ped") or self.parentType
         if not self.parentType or not bone.public.ids[(self.parentType)] then return false end
         boneData.id = imports.tonumber(boneData.id)
@@ -192,12 +190,12 @@ else
     function bone.public:load(element, parent, boneData, targetPlayer)
         if not bone.public:isInstance(self) or self.isUnloading then return false end
         if targetPlayer then return network:emit("Assetify:Bone:onAttachment", true, false, targetPlayer, self.element, self.parent, self.boneData, self.remoteSignature) end
-        if not element or not parent or not imports.isElement(element) or not imports.isElement(parent) or not boneData or (element == parent) or bone.public.buffer.element[element] then return false end
+        if not element or not parent or not isElement(element) or not isElement(parent) or not boneData or (element == parent) or bone.public.buffer.element[element] then return false end
         self.element, self.parent = element, parent
         if not self:refresh(boneData, _, true) then return false end
         self.remoteSignature = {
-            parentType = imports.getElementType(parent),
-            elementType = imports.getElementType(element)
+            parentType = getElementType(parent),
+            elementType = getElementType(element)
         }
         bone.public.buffer.element[element] = self
         bone.public.buffer.parent[parent] = bone.public.buffer.parent[parent] or {}
@@ -230,7 +228,7 @@ else
     function bone.public:refresh(boneData, targetPlayer, skipSync)
         if not bone.public:isInstance(self) or self.isUnloading then return false end
         if targetPlayer and not skipSync then return network:emit("Assetify:Bone:onRefreshment", true, false, targetPlayer, self.element, self.boneData, self.remoteSignature) end
-        self.parentType = self.parentType or imports.getElementType(self.parent)
+        self.parentType = self.parentType or getElementType(self.parent)
         self.parentType = ((self.parentType == "player") and "ped") or self.parentType
         if not self.parentType or not bone.public.ids[(self.parentType)] then return false end
         boneData.id = imports.tonumber(boneData.id)

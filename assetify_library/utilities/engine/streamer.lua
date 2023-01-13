@@ -16,7 +16,6 @@ local imports = {
     pairs = pairs,
     tonumber = tonumber,
     getCamera = getCamera,
-    isElement = isElement,
     addEventHandler = addEventHandler,
     removeEventHandler = removeEventHandler,
     getTickCount = getTickCount,
@@ -66,7 +65,7 @@ end
 
 function streamer.public:load(streamerInstance, streamType, occlusionInstances, syncRate)
     if not streamer.public:isInstance(self) then return false end
-    if not streamerInstance or not streamType or not imports.isElement(streamerInstance) or not occlusionInstances or not occlusionInstances[1] or not imports.isElement(occlusionInstances[1]) then return false end
+    if not streamerInstance or not streamType or not isElement(streamerInstance) or not occlusionInstances or not occlusionInstances[1] or not isElement(occlusionInstances[1]) then return false end
     self.streamer, self.isStreamerCollidable = streamerInstance, imports.getElementCollisionsEnabled(streamerInstance)
     self.streamType, self.occlusions = streamType, occlusionInstances
     self.dimension, self.interior = imports.getElementDimension(occlusionInstances[1]), imports.getElementInterior(occlusionInstances[1])

@@ -16,8 +16,6 @@ local syncer = syncer:import()
 local imports = {
     pairs = pairs,
     tonumber = tonumber,
-    isElement = isElement,
-    getElementType = getElementType,
     destroyElement = destroyElement,
     createObject = createObject,
     createPed = createPed,
@@ -109,7 +107,7 @@ if localPlayer then
             if not self.cModelInstance then
                 return false
             else
-                return not imports.isElement(self.cModelInstance)
+                return not isElement(self.cModelInstance)
             end
         end, function()
             if dummyType == "object" then imports.setElementDoubleSided(self.cModelInstance, true) end

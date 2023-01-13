@@ -18,8 +18,6 @@ local imports = {
     md5 = md5,
     tonumber = tonumber,
     tostring = tostring,
-    isElement = isElement,
-    getElementType = getElementType,
     getThisResource = getThisResource,
     getResourceName = getResourceName,
     addEvent = addEvent,
@@ -254,7 +252,7 @@ function network.public:emit(...)
             payload.isLatent = network.private.fetchArg(_, cArgs)
             if network.public.isServerInstance then
                 payload.isReceiver = network.private.fetchArg(_, cArgs)
-                payload.isReceiver = (payload.isReceiver and imports.isElement(payload.isReceiver) and (imports.getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
+                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
             end
         end
     else
@@ -301,7 +299,7 @@ function network.public:emitCallback(...)
                 payload.isReceiver = localPlayer
             else
                 payload.isReceiver = network.private.fetchArg(_, cArgs)
-                payload.isReceiver = (payload.isReceiver and imports.isElement(payload.isReceiver) and (imports.getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
+                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
             end
         end
     else
