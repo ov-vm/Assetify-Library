@@ -59,19 +59,6 @@ function manager.API.Library.getElementAsset(element)
     return syncer.syncedElements[element].assetType, syncer.syncedElements[element].assetName, syncer.syncedElements[element].assetClump, syncer.syncedElements[element].clumpMaps
 end
 
-function manager.API.Library.setElementAssetTone(...)
-    return syncer.syncElementTone(_, ...)
-end
-
-function manager.API.Library.getElementAssetTone(element, assetType, assetName, textureName, isBumpTone)
-    if not syncer.syncedElementTones[element] or not syncer.syncedElementTones[element][assetType] or not syncer.syncedElementTones[element][assetType][assetName] or not syncer.syncedElementTones[element][assetType][assetName][textureName] then return false end
-    if isBumpTone then
-        if not syncer.syncedElementTones[element][assetType][assetName][textureName].bump then return false end
-        return {syncer.syncedElementTones[element][assetType][assetName][textureName].bump[1], syncer.syncedElementTones[element][assetType][assetName][textureName].bump[2]}
-    end
-    return {syncer.syncedElementTones[element][assetType][assetName][textureName][1], syncer.syncedElementTones[element][assetType][assetName][textureName][2]}
-end
-
 function manager.API.Library.setGlobalData(...)
     return syncer.syncGlobalData(...)
 end

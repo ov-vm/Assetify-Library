@@ -62,8 +62,6 @@ bundler.private:createBuffer("core", "__core", [[
             {exportIndex = "assetify.__core.getAssetDep", exportName = "getAssetDep"},
             {exportIndex = "assetify.__core.setElementAsset", exportName = "setElementAsset"},
             {exportIndex = "assetify.__core.getElementAsset", exportName = "getElementAsset"},
-            {exportIndex = "assetify.__core.setElementAssetTone", exportName = "setElementAssetTone"},
-            {exportIndex = "assetify.__core.getElementAssetTone", exportName = "getElementAssetTone"},
             {exportIndex = "assetify.__core.createDummy", exportName = "createAssetDummy"}
         },
         client = {
@@ -115,42 +113,6 @@ bundler.private:createBuffer("scheduler", _, [[
     ]]..bundler.private:createModule("network")..[[
     assetify.scheduler = {}
     ]]..bundler.private:createScheduler()..[[
-]])
-
-bundler.private:createBuffer("renderer", _, [[
-    assetify.renderer = {}
-    ]]..bundler.private:createAPIs({
-        client = {
-            {exportIndex = "assetify.renderer.isVirtualRendering", exportName = "isRendererVirtualRendering"},
-            {exportIndex = "assetify.renderer.setVirtualRendering", exportName = "setRendererVirtualRendering"},
-            {exportIndex = "assetify.renderer.getVirtualSource", exportName = "getRendererVirtualSource"},
-            {exportIndex = "assetify.renderer.getVirtualRTs", exportName = "getRendererVirtualRTs"},
-            {exportIndex = "assetify.renderer.isTimeSynced", exportName = "isRendererTimeSynced"},
-            {exportIndex = "assetify.renderer.setTimeSync", exportName = "setRendererTimeSync"},
-            {exportIndex = "assetify.renderer.setServerTick", exportName = "setRendererServerTick"},
-            {exportIndex = "assetify.renderer.setMinuteDuration", exportName = "setRendererMinuteDuration"},
-            {exportIndex = "assetify.renderer.getAntiAliasing", exportName = "getRendererAntiAliasing"},
-            {exportIndex = "assetify.renderer.setAntiAliasing", exportName = "setRendererAntiAliasing"},
-            {exportIndex = "assetify.renderer.isEmissiveMode", exportName = "isRendererEmissiveMode"},
-            {exportIndex = "assetify.renderer.setEmissiveMode", exportName = "setRendererEmissiveMode"},
-            {exportIndex = "assetify.renderer.isDynamicSky", exportName = "isRendererDynamicSky"},
-            {exportIndex = "assetify.renderer.setDynamicSky", exportName = "setRendererDynamicSky"},
-            {exportIndex = "assetify.renderer.isDynamicPrelights", exportName = "isRendererDynamicPrelights"},
-            {exportIndex = "assetify.renderer.setDynamicPrelights", exportName = "setRendererDynamicPrelights"},
-            {exportIndex = "assetify.renderer.getDynamicSunColor", exportName = "getRendererDynamicSunColor"},
-            {exportIndex = "assetify.renderer.setDynamicSunColor", exportName = "setRendererDynamicSunColor"},
-            {exportIndex = "assetify.renderer.isDynamicStars", exportName = "isRendererDynamicStars"},
-            {exportIndex = "assetify.renderer.setDynamicStars", exportName = "setRendererDynamicStars"},
-            {exportIndex = "assetify.renderer.getDynamicCloudDensity", exportName = "getRendererDynamicCloudDensity"},
-            {exportIndex = "assetify.renderer.setDynamicCloudDensity", exportName = "setRendererDynamicCloudDensity"},
-            {exportIndex = "assetify.renderer.getDynamicCloudScale", exportName = "getRendererDynamicCloudScale"},
-            {exportIndex = "assetify.renderer.setDynamicCloudScale", exportName = "setRendererDynamicCloudScale"},
-            {exportIndex = "assetify.renderer.getDynamicCloudColor", exportName = "getRendererDynamicCloudColor"},
-            {exportIndex = "assetify.renderer.setDynamicCloudColor", exportName = "setRendererDynamicCloudColor"},
-            {exportIndex = "assetify.renderer.getTimeCycle", exportName = "getRendererTimeCycle"},
-            {exportIndex = "assetify.renderer.setTimeCycle", exportName = "setRendererTimeCycle"}
-        }
-    })..[[
 ]])
 
 bundler.private:createBuffer("syncer", _, [[
