@@ -18,7 +18,7 @@ local imports = {
     getTickCount = getTickCount,
     GetPlayerPed = GetPlayerPed,
     GetEntityType = GetEntityType,
-    destroyElement = destroyElement,
+    DeleteEntity = DeleteEntity,
     getElementMatrix = getElementMatrix,
     getElementPosition = getElementPosition,
     TriggerServerEvent = TriggerServerEvent
@@ -37,7 +37,7 @@ getElementType = function(element)
     return ((index == 1) and "ped") or ((index == 2) and "vehicle") or ((index == 3) and "object") or false
 end
 isElement = function(element) return (element and getElementType(element) and true) or false end
-destroyElement = function(element) return (isElement(element) and imports.destroyElement(element)) or false end
+destroyElement = function(element) return (isElement(element) and imports.DeleteEntity(element)) or false end
 
 function getElementPosition(element, offX, offY, offZ)
     if not element or not isElement(element) then return false end
