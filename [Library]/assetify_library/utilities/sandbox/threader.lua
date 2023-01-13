@@ -19,6 +19,7 @@ local imports = {
     collectgarbage = collectgarbage,
     coroutine = coroutine
 }
+coroutine = nil
 
 
 -----------------------
