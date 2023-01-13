@@ -15,9 +15,7 @@
 local imports = {
     type = type,
     tonumber = tonumber,
-    setTimer = setTimer,
-    isTimer = isTimer,
-    killTimer = killTimer
+    Citizen = Citizen
 }
 
 
@@ -51,20 +49,20 @@ function timer.public:load(exec, interval, executions, ...)
     self.currentExec = 0
     self.interval, self.executions = interval, executions
     self.arguments = table.pack(...)
-    self.timer = imports.setTimer(function()
-        self.currentExec = self.currentExec + 1
-        if (self.executions > 0) and (self.currentExec >= self.executions) then
-            self:destroy()
-        end
-        self.exec(table.unpack(self.arguments))
-    end, self.interval, self.executions)
+    imports.Citizen.CreateThread(function()
+         while ((execution == 0) or (self.currentExec < execution)) do
+            self.currentExec = self.currentExec + 1
+            self.exec(table.unpack(self.arguments))
+            imports.Citizen.Wait(self.interval)
+         end
+    end)
     return self
 end
 
 function timer.public:unload()
     if not timer.public:isInstance(self) then return false end
     if self.timer and imports.isTimer(self.timer) then
-        imports.killTimer(self.timer)
+        --imports.killTimer(self.timer)
     end
     self:destroyInstance()
     return true

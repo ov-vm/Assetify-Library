@@ -17,7 +17,7 @@ local imports = {
     pairs = pairs,
     tostring = tostring,
     tonumber = tonumber,
-    outputDebugString = outputDebugString
+    print = print
 }
 
 
@@ -163,7 +163,7 @@ function vcl.private.parseReturn(parser, buffer)
     if not parser.isParsed then
         if not parser.isChildErrored or (parser.isChildErrored == 0) then
             parser.isErrored = string.format(parser.isErrored, vcl.private.fetchLine(buffer, parser.ref), (parser.isType and "Malformed "..parser.isType) or "Invalid declaration")
-            imports.outputDebugString(parser.isErrored)
+            imports.print(parser.isErrored)
         end
         return false, false, true
     elseif (parser.isType == "object") then return parser.pointer, parser.ref

@@ -17,7 +17,7 @@ local imports = {
     pairs = pairs,
     md5 = md5,
     collectgarbage = collectgarbage,
-    outputDebugString = outputDebugString,
+    print = print,
     getResourceName = getResourceName,
     addEventHandler = addEventHandler,
     getLatentEventStatus = getLatentEventStatus
@@ -151,7 +151,7 @@ else
                     self.unSynced.fileData[j] = builtFileData
                     self.unSynced.fileHash[j] = imports.md5(builtFileData)
                 else
-                    imports.outputDebugString("Assetify: Invalid File ━│  "..j)
+                    imports.print("Assetify: Invalid File ━│  "..j)
                 end
             end
         end

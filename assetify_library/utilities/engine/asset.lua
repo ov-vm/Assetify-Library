@@ -18,7 +18,7 @@ local imports = {
     md5 = md5,
     tonumber = tonumber,
     tostring = tostring,
-    outputDebugString = outputDebugString,
+    print = print,
     destroyElement = destroyElement,
     engineRequestModel = engineRequestModel,
     engineSetModelLODDistance = engineSetModelLODDistance,
@@ -294,7 +294,7 @@ else
                 end
                 if rawPointer then rawPointer[filePath] = builtFileData end
             else
-                if debugExistence then imports.outputDebugString("Assetify: Invalid File ━│  "..filePath) end
+                if debugExistence then imports.print("Assetify: Invalid File ━│  "..filePath) end
             end
         end
         return true
