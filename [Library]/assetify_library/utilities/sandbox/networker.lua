@@ -15,15 +15,14 @@
 local imports = {
     type = type,
     pairs = pairs,
-    md5 = md5,
     tonumber = tonumber,
     tostring = tostring,
     getThisResource = getThisResource,
     getResourceName = getResourceName,
     addEvent = addEvent,
     addEventHandler = addEventHandler,
-    triggerEvent = triggerEvent,
-    triggerRemoteEvent = (localPlayer and triggerServerEvent) or triggerClientEvent,
+    triggerEvent = TriggerEvent,
+    triggerRemoteEvent = (localPlayer and TriggerServerEvent) or TriggerClientEvent,
     triggerRemoteLatentEvent = (localPlayer and triggerLatentServerEvent) or triggerLatentClientEvent
 }
 
@@ -33,7 +32,7 @@ local imports = {
 ------------------------
 
 local network = class:create("network", {
-    identifier = imports.md5(imports.getResourceName(imports.getThisResource())),
+    identifier = imports.getResourceName(imports.getThisResource()),
     isServerInstance = (not localPlayer and true) or false,
     bandwidth = 1250000
 })
@@ -135,7 +134,7 @@ end
 
 function network.private.serializeExec(exec)
     if not exec or (imports.type(exec) ~= "function") then return false end
-    local cSerial = imports.md5(network.public.identifier..":"..imports.tostring(exec))
+    local cSerial = network.public.identifier..":"..imports.tostring(exec)
     network.private.cache.execSerials[cSerial] = exec
     return cSerial
 end
