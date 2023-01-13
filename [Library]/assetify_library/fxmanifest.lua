@@ -17,7 +17,7 @@ shared_scripts {
     "utilities/sandbox/math/index.lua",
     "utilities/sandbox/math/quat.lua",
     "utilities/sandbox/math/matrix.lua",
-    "utilities/sandbox/string.lua",
+    "utilities/sandbox/string.lua", --TODO: PORT UTF8
     "utilities/sandbox/timer.lua",
     "utilities/sandbox/threader.lua",
     --"utilities/sandbox/networker.lua", --TODO: WIP
