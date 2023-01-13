@@ -112,7 +112,7 @@ function network.private.execNetwork(cNetwork, exec, cThread, serial, payload)
         if not payload.isRemote then
             imports.triggerEvent("Assetify:Networker:API", serial, payload)
         else
-            if not payload.isReceiver or not network.public.isServerInstance then
+            if not network.public.isServerInstance then
                 if not payload.isLatent then
                     imports.triggerRemoteEvent("Assetify:Networker:API", serial, payload)
                 else
@@ -120,9 +120,9 @@ function network.private.execNetwork(cNetwork, exec, cThread, serial, payload)
                 end
             else
                 if not payload.isLatent then
-                    imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Networker:API", serial, payload)
+                    imports.triggerRemoteEvent("Assetify:Networker:API", payload.isReceiver, serial, payload)
                 else
-                    imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Networker:API", network.public.bandwidth, false, serial, payload)
+                    imports.triggerRemoteLatentEvent("Assetify:Networker:API", payload.isReceiver, network.public.bandwidth, false, serial, payload)
                 end
             end
         end
@@ -249,7 +249,7 @@ function network.public:emit(...)
             payload.isLatent = network.private.fetchArg(_, cArgs)
             if network.public.isServerInstance then
                 payload.isReceiver = network.private.fetchArg(_, cArgs)
-                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
+                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or -1
             end
         end
     else
@@ -260,17 +260,17 @@ function network.public:emit(...)
     if not payload.isRemote then
         imports.triggerEvent("Assetify:Networker:API", network.public.identifier, payload)
     else
-        if payload.isReceiver then
-            if not payload.isLatent then
-                imports.triggerRemoteEvent(payload.isReceiver, "Assetify:Networker:API", network.public.identifier, payload)
-            else
-                imports.triggerRemoteLatentEvent(payload.isReceiver, "Assetify:Networker:API", network.public.bandwidth, false, network.public.identifier, payload)
-            end
-        else
+        if not network.public.isServerInstance then
             if not payload.isLatent then
                 imports.triggerRemoteEvent("Assetify:Networker:API", network.public.identifier, payload)
             else
                 imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, network.public.identifier, payload)
+            end
+        else
+            if not payload.isLatent then
+                imports.triggerRemoteEvent("Assetify:Networker:API", payload.isReceiver, network.public.identifier, payload)
+            else
+                imports.triggerRemoteLatentEvent("Assetify:Networker:API", payload.isReceiver, network.public.bandwidth, false, network.public.identifier, payload)
             end
         end
     end
@@ -296,7 +296,7 @@ function network.public:emitCallback(...)
                 payload.isReceiver = localPlayer
             else
                 payload.isReceiver = network.private.fetchArg(_, cArgs)
-                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or false
+                payload.isReceiver = (payload.isReceiver and isElement(payload.isReceiver) and (getElementType(payload.isReceiver) == "player") and payload.isReceiver) or -1
             end
         end
     else
@@ -307,10 +307,18 @@ function network.public:emitCallback(...)
     if not payload.isRemote then
         imports.triggerEvent("Assetify:Networker:API", network.public.identifier, payload)
     else
-        if not payload.isLatent then
-            imports.triggerRemoteEvent("Assetify:Networker:API", network.public.identifier, payload)
+        if not network.public.isServerInstance then
+            if not payload.isLatent then
+                imports.triggerRemoteEvent("Assetify:Networker:API", network.public.identifier, payload)
+            else
+                imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, network.public.identifier, payload)
+            end
         else
-            imports.triggerRemoteLatentEvent("Assetify:Networker:API", network.public.bandwidth, false, network.public.identifier, payload)
+            if not payload.isLatent then
+                imports.triggerRemoteEvent("Assetify:Networker:API", payload.isReceiver, network.public.identifier, payload)
+            else
+                imports.triggerRemoteLatentEvent("Assetify:Networker:API", payload.isReceiver, network.public.bandwidth, false, network.public.identifier, payload)
+            end
         end
     end
     return cPromise
