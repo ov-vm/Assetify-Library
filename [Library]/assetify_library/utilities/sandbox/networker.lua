@@ -17,8 +17,6 @@ local imports = {
     pairs = pairs,
     tonumber = tonumber,
     tostring = tostring,
-    getThisResource = getThisResource,
-    getResourceName = getResourceName,
     addEvent = addEvent,
     addEventHandler = addEventHandler,
     triggerEvent = TriggerEvent,
@@ -32,7 +30,7 @@ local imports = {
 ------------------------
 
 local network = class:create("network", {
-    identifier = imports.getResourceName(imports.getThisResource()),
+    identifier = imports.GetCurrentResourceName(),
     isServerInstance = (not localPlayer and true) or false,
     bandwidth = 1250000
 })
