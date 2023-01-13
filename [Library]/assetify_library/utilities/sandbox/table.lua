@@ -20,7 +20,6 @@ local imports = {
     json = json,
     vcl = vcl,
     select = select,
-    unpack = unpack,
     print = print,
     getmetatable = getmetatable,
     loadstring = loadstring
@@ -53,9 +52,10 @@ function table.public.pack(...)
     }, ...}
 end
 
+local __table_unpack = table.public.unpack
 function table.public.unpack(baseTable)
     if not baseTable or (imports.type(baseTable) ~= "table") then return false end
-    return imports.unpack(baseTable, 1, table.public.length(baseTable))
+    return __table_unpack(baseTable, 1, table.public.length(baseTable))
 end
 
 function table.public.encode(baseTable, encoding)
