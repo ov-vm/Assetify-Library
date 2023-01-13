@@ -12,7 +12,7 @@ shared_scripts {
     "utilities/sandbox/index.lua",
     "utilities/sandbox/namespacer.lua",
     "utilities/sandbox/vcl.lua",
-    "utilities/sandbox/table.lua", --TODO: WIP
+    "utilities/sandbox/table.lua",
     "utilities/sandbox/filesystem.lua", --TODO: WIP
     "utilities/sandbox/math/index.lua",
     "utilities/sandbox/math/quat.lua",

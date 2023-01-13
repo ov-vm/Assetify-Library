@@ -17,8 +17,7 @@ local imports = {
     pairs = pairs,
     tostring = tostring,
     tonumber = tonumber,
-    toJSON = toJSON,
-    fromJSON = fromJSON,
+    json = json,
     vcl = vcl,
     select = select,
     unpack = unpack,
@@ -61,13 +60,13 @@ end
 
 function table.public.encode(baseTable, encoding)
     if not baseTable or (imports.type(baseTable) ~= "table") then return false end
-    if encoding == "json" then return imports.toJSON(baseTable)
+    if encoding == "json" then return imports.json.encode(baseTable)
     else return imports.vcl.encode(baseTable) end
 end
 
 function table.public.decode(baseString, encoding)
     if not baseString or (imports.type(baseString) ~= "string") then return false end
-    if encoding == "json" then return imports.fromJSON(baseString)
+    if encoding == "json" then return imports.json.decode(baseString)
     else return imports.vcl.decode(baseString) end
 end
 
