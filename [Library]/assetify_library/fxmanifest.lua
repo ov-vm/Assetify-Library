@@ -24,6 +24,8 @@ shared_scripts {
     --"utilities/sandbox/rest.lua", --TODO: WIP
     --"utilities/engine/syncer.lua", --TODO: WIP
     --"utilities/sandbox/datasystem.lua"
+
+    "test.lua", --TODO: REMOVE LATER
 }
 
 client_scripts {}
