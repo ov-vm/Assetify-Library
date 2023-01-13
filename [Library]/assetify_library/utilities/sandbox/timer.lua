@@ -17,6 +17,7 @@ local imports = {
     tonumber = tonumber,
     Citizen = Citizen
 }
+Citizen = nil
 
 
 ----------------------
