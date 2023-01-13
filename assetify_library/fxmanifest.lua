@@ -23,7 +23,7 @@ shared_scripts {
     "utilities/sandbox/networker.lua", --TODO: WIP
     "utilities/sandbox/rest.lua", --TODO: WIP
     "utilities/engine/syncer.lua", --TODO: WIP
-    "utilities/sandbox/datasystem.lua"  --TODO: WIP
+    "utilities/sandbox/datasystem.lua"
 }
 
 client_scripts {}
