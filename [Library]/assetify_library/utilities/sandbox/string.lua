@@ -15,7 +15,6 @@
 local imports = {
     type = type,
     pairs = pairs,
-    md5 = md5,
     tostring = tostring,
     tonumber = tonumber,
     loadstring = loadstring,
@@ -32,7 +31,7 @@ local string = class:create("string", utf8)
 for i, j in imports.pairs(imports.string) do
     string.public[i] = (not string.public[i] and j) or string.public[i]
 end
-string.private.minifier = imports.md5("vStudio")
+string.private.minifier = "vStudio"
 
 function string.public.isVoid(baseString)
     if not baseString or (imports.type(baseString) ~= "string") then return false end
