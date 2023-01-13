@@ -11,7 +11,7 @@ shared_scripts {
     -->> Utilities: Sandbox <<--
     "utilities/sandbox/index.lua",
     "utilities/sandbox/namespacer.lua",
-    "utilities/sandbox/vcl.lua", --TODO: WIP
+    "utilities/sandbox/vcl.lua",
     "utilities/sandbox/table.lua", --TODO: WIP
     "utilities/sandbox/filesystem.lua", --TODO: WIP
     "utilities/sandbox/math/index.lua",
@@ -23,7 +23,7 @@ shared_scripts {
     "utilities/sandbox/networker.lua", --TODO: WIP
     "utilities/sandbox/rest.lua", --TODO: WIP
     "utilities/engine/syncer.lua", --TODO: WIP
-    "utilities/sandbox/datasystem.lua"
+    "utilities/sandbox/datasystem.lua"  --TODO: WIP
 }
 
 client_scripts {}
