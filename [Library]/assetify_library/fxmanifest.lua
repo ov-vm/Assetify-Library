@@ -13,16 +13,16 @@ shared_scripts {
     "utilities/sandbox/namespacer.lua",
     "utilities/sandbox/vcl.lua",
     "utilities/sandbox/table.lua",
-    "utilities/sandbox/filesystem.lua", --TODO: WIP
+    --"utilities/sandbox/filesystem.lua", --TODO: WIP
     "utilities/sandbox/math/index.lua",
     "utilities/sandbox/math/quat.lua",
     "utilities/sandbox/math/matrix.lua",
-    "utilities/sandbox/string.lua", --TODO: WIP
+    "utilities/sandbox/string.lua",
     "utilities/sandbox/timer.lua",
     "utilities/sandbox/threader.lua",
-    "utilities/sandbox/networker.lua", --TODO: WIP
-    "utilities/sandbox/rest.lua", --TODO: WIP
-    "utilities/engine/syncer.lua", --TODO: WIP
+    --"utilities/sandbox/networker.lua", --TODO: WIP
+    --"utilities/sandbox/rest.lua", --TODO: WIP
+    --"utilities/engine/syncer.lua", --TODO: WIP
     "utilities/sandbox/datasystem.lua"
 }
 
