@@ -3,7 +3,6 @@
     <script src="utilities/engine/asset.lua" type="shared"/>
     <script src="utilities/engine/resource.lua" type="shared"/>
     <script src="utilities/engine/manager.lua" type="shared"/>
-    <script src="utilities/engine/renderer.lua" type="shared"/>
     <script src="utilities/engine/streamer.lua" type="client"/>
     <script src="utilities/engine/downloader.lua" type="shared"/>
     <script src="utilities/engine/scene.lua" type="shared"/>
@@ -73,7 +72,6 @@
     <export function="loadAsset" type="client"/>
     <export function="unloadAsset" type="client"/>
     <export function="loadResource" type="server"/>
-    <export function="createShader" type="client"/>
     <export function="clearWorld" type="client"/>
     <export function="restoreWorld" type="client"/>
     <export function="toggleOcclusions" type="client"/>
@@ -83,31 +81,3 @@
     <export function="unloadAnim" type="client"/>
     <export function="playSoundAsset" type="client"/>
     <export function="playSoundAsset3D" type="client"/>
-    <export function="isRendererVirtualRendering" type="client"/>
-    <export function="setRendererVirtualRendering" type="client"/>
-    <export function="getRendererVirtualSource" type="client"/>
-    <export function="getRendererVirtualRTs" type="client"/>
-    <export function="isRendererTimeSynced" type="client"/>
-    <export function="setRendererTimeSync" type="client"/>
-    <export function="setRendererServerTick" type="client"/>
-    <export function="setRendererMinuteDuration" type="client"/>
-    <export function="getRendererAntiAliasing" type="client"/>
-    <export function="setRendererAntiAliasing" type="client"/>
-    <export function="isRendererEmissiveMode" type="client"/>
-    <export function="setRendererEmissiveMode" type="client"/>
-    <export function="isRendererDynamicSky" type="client"/>
-    <export function="setRendererDynamicSky" type="client"/>
-    <export function="isRendererDynamicPrelights" type="client"/>
-    <export function="setRendererDynamicPrelights" type="client"/>
-    <export function="getRendererDynamicSunColor" type="client"/>
-    <export function="setRendererDynamicSunColor" type="client"/>
-    <export function="isRendererDynamicStars" type="client"/>
-    <export function="setRendererDynamicStars" type="client"/>
-    <export function="getRendererDynamicCloudDensity" type="client"/>
-    <export function="setRendererDynamicCloudDensity" type="client"/>
-    <export function="getRendererDynamicCloudScale" type="client"/>
-    <export function="setRendererDynamicCloudScale" type="client"/>
-    <export function="getRendererDynamicCloudColor" type="client"/>
-    <export function="setRendererDynamicCloudColor" type="client"/>
-    <export function="getRendererTimeCycle" type="client"/>
-    <export function="setRendererTimeCycle" type="client"/>
