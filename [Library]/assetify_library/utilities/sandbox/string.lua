@@ -26,11 +26,11 @@ local imports = {
 --[[ Class: String ]]--
 -----------------------
 
---TODO: THIS MUST BE SOMEHOW PORTED TOO
 local string = class:create("string", utf8)
 for i, j in imports.pairs(imports.string) do
     string.public[i] = (not string.public[i] and j) or string.public[i]
 end
+utf8 = nil
 string.private.minifier = "vStudio"
 
 function string.public.isVoid(baseString)
