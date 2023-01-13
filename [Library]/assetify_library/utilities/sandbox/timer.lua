@@ -51,12 +51,12 @@ function timer.public:load(exec, interval, executions, ...)
     self.interval, self.executions = interval, executions
     self.arguments = table.pack(...)
     imports.Citizen.CreateThread(function()
-         while ((self.executions == 0) or (self.currentExec < self.executions)) do
+        while ((self.executions == 0) or (self.currentExec < self.executions)) do
             imports.Citizen.Wait(self.interval)
             if not timer.public:isInstance(self) then return end
             self.currentExec = self.currentExec + 1
             self.exec(table.unpack(self.arguments))
-         end
+        end
     end)
     return self
 end
