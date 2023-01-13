@@ -55,6 +55,9 @@ function timer.public:load(exec, interval, executions, ...)
             imports.Citizen.Wait(self.interval)
             if not timer.public:isInstance(self) then return end
             self.currentExec = self.currentExec + 1
+            if (self.executions > 0) and (self.currentExec >= self.executions) then
+                self:destroy()
+            end
             self.exec(table.unpack(self.arguments))
         end
     end)
