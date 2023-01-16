@@ -20,7 +20,7 @@ shared_scripts {
     "utilities/sandbox/string.lua",
     "utilities/sandbox/timer.lua",
     "utilities/sandbox/threader.lua",
-    "utilities/sandbox/networker.lua", --TODO: WIP
+    "utilities/sandbox/networker.lua",
     --"utilities/sandbox/rest.lua", --TODO: WIP
     --"utilities/engine/syncer.lua", --TODO: WIP
     --"utilities/sandbox/datasystem.lua"
