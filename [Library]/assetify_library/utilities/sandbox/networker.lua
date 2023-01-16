@@ -17,8 +17,9 @@ local imports = {
     pairs = pairs,
     tonumber = tonumber,
     tostring = tostring,
-    addEvent = addEvent,
-    addEventHandler = addEventHandler,
+    GetCurrentResourceName = GetCurrentResourceName,
+    RegisterNetEvent = RegisterNetEvent,
+    AddEventHandler = AddEventHandler,
     triggerEvent = TriggerEvent,
     triggerRemoteEvent = (localPlayer and TriggerServerEvent) or TriggerClientEvent,
     triggerRemoteLatentEvent = (localPlayer and TriggerLatentServerEvent) or TriggerLatentClientEvent
@@ -39,8 +40,8 @@ network.private.cache = {
     execSerials = {}
 }
 
-imports.addEvent("Assetify:Networker:API", true)
-imports.addEventHandler("Assetify:Networker:API", root, function(serial, payload)
+imports.RegisterNetEvent("Assetify:Networker:API")
+imports.AddEventHandler("Assetify:Networker:API", function(serial, payload)
     if not serial or not payload or not payload.processType or (payload.isRestricted and (serial ~= network.public.identifier)) then return false end
     if payload.processType == "emit" then
         local cNetwork = network.public:fetch(payload.networkName)

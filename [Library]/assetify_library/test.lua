@@ -36,13 +36,18 @@ thread:create(function()
 end):resume()
 ]]
 
+network:create("testnetwork"):on(function(...)
+    iprint({...})
+end)
+
 if localPlayer then
     print("Booted Client Sided Network")
     print("Trying to emit to custom server network 'Hello World'")
-    network:emit("testnetwork", false, "Hello", "World")
+    network:emit("testnetwork", true, false, "Hello", "World")
 else
     print("Booted Server Sided Network")
-    network:create("testnetwork"):on(function(...)
-        iprint(...)
+    RegisterCommand("testnetwork", function(source)
+        if source <= 0 then return false end
+        network:emit("testnetwork", true, source, "Hello", "World")
     end)
 end
